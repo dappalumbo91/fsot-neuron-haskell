@@ -129,6 +129,7 @@ library
       Fsot.PhaseD
       Fsot.BioLearn
       Fsot.BioEmbodied
+      Fsot.SelfTalk
       Fsot.PixelIdFixed
       Fsot.QueryToolFixed
       Fsot.ReasonPracticeFixed

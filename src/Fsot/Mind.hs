@@ -25,6 +25,8 @@ import qualified Fsot.PhaseA as PhaseA
 import qualified Fsot.PhaseB as PhaseB
 import qualified Fsot.PhaseC as PhaseC
 import qualified Fsot.PhaseD as PhaseD
+import qualified Fsot.GliaFixed as Glia
+import qualified Fsot.SelfTalk as SelfTalk
 import System.Directory (doesFileExist, getCurrentDirectory)
 import System.Environment (getArgs)
 import System.Exit (ExitCode (..), exitFailure, exitWith)
@@ -96,6 +98,18 @@ runMode mode = case mode of
     let r = Emb.runConverse
     Emb.printConverse r
     unless (Emb.cvOk r) exitFailure
+  "glia-ca" -> do
+    let r = Glia.runGliaProduct 120
+    Glia.printGliaProduct r
+    unless (Glia.gpOk r) exitFailure
+  "glia-product" -> runMode "glia-ca"
+  "astrocyte" -> runMode "glia-ca"
+  "self-talk" -> do
+    let r = SelfTalk.runSelfTalk
+    SelfTalk.printReport r
+    unless (SelfTalk.stOk r) exitFailure
+  "self_talk" -> runMode "self-talk"
+  "internal-speech" -> runMode "self-talk"
   "codon" -> runCodon
   "genetic" -> runGenetic
   "genetic-var" -> runGenetic
