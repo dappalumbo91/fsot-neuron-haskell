@@ -20,8 +20,10 @@ import qualified Fsot.Neuron as Neu
 import qualified Fsot.Organism as Org
 import qualified Fsot.Parity as Parity
 import qualified Fsot.BioLearn as Bio
+import qualified Fsot.BioEmbodied as Emb
 import qualified Fsot.PhaseA as PhaseA
 import qualified Fsot.PhaseB as PhaseB
+import qualified Fsot.PhaseC as PhaseC
 import System.Directory (doesFileExist, getCurrentDirectory)
 import System.Environment (getArgs)
 import System.Exit (ExitCode (..), exitFailure, exitWith)
@@ -36,6 +38,7 @@ usage =
     , "FULL CAPABILITY twin of Zig fsot_mind - Phase A included."
     , "  phase-a       = organism + compose + intel-loop + think + isi-ks"
     , "  phase-b       = bio-learn experience intelligence + stress residual"
+    , "  phase-c       = embodied I/O (bio-io + articulate + converse)"
     , "  bio-learn     = animal/human learning suite (NOT LLM)"
     , "  think         = continuous organism think probe"
     , "  think-min N   = think for N wall-clock minutes"
@@ -63,12 +66,29 @@ runMode mode = case mode of
   "phase_b" -> PhaseB.runPhaseB
   "phaseb" -> PhaseB.runPhaseB
   "experience-intelligence" -> PhaseB.runPhaseB
+  "phase-c" -> PhaseC.runPhaseC
+  "phase_c" -> PhaseC.runPhaseC
+  "phasec" -> PhaseC.runPhaseC
+  "embodied" -> PhaseC.runPhaseC
+  "embodied-io" -> PhaseC.runPhaseC
   "bio-learn" -> do
     let r = Bio.runBioLearn
     Bio.printReport r
     unless (Bio.blOk r) exitFailure
   "bio_learn" -> runMode "bio-learn"
   "animal-learn" -> runMode "bio-learn"
+  "bio-io" -> do
+    let r = Emb.runBioIo
+    Emb.printBioIo r
+    unless (Emb.ioOk r) exitFailure
+  "bio-articulate" -> do
+    let r = Emb.runArticulate
+    Emb.printArticulate r
+    unless (Emb.arOk r) exitFailure
+  "bio-converse" -> do
+    let r = Emb.runConverse
+    Emb.printConverse r
+    unless (Emb.cvOk r) exitFailure
   "codon" -> runCodon
   "genetic" -> runGenetic
   "genetic-var" -> runGenetic
