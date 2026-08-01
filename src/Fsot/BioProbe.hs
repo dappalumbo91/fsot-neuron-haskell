@@ -43,9 +43,11 @@ paramsFromCellType ct unitId diversity =
    in phenotypeFiKnobs ph
 
 -- | Discrete FI train: leaky threshold model with refractory + AHP adaptation.
+-- Tuned so mean ISI tracks ref_steps on the 1 ms lattice (Zig Fixed doctrine).
 runFIUnit :: UnitParams -> Int -> FiResult
 runFIUnit p steps =
   let dtMs = 1.0 -- 1 ms lattice (matches Zig Fixed FI step doctrine)
+      thr = upFireThr p
       go t s adapt refLeft fires =
         if t >= steps
           then fires
@@ -54,11 +56,13 @@ runFIUnit p steps =
                   if refLeft > 0
                     then (0.0, adapt * upAdaptDecay p, refLeft - 1, False)
                     else
-                      let drive = upFiStim p - adapt
-                          s' = s * 0.92 + drive * 0.18 * (upDEff p / 13.0)
-                          thr = upFireThr p
+                      -- Stronger drive after refractory so ISI ≈ ref_steps under FI stim
+                      let drive = max 0.0 (upFiStim p - 0.35 * adapt)
+                          leak = 0.88
+                          inj = drive * 0.35 * (upDEff p / 13.0)
+                          s' = s * leak + inj
                        in if s' >= thr
-                            then (0.0, adapt + upAdaptStep p * upAdaptGain p, upRefSteps p, True)
+                            then (0.0, adapt + upAdaptStep p * upAdaptGain p, max 1 (upRefSteps p), True)
                             else (s', adapt * upAdaptDecay p, 0, False)
                 fires' = if fired then t : fires else fires
              in go (t + 1) s1 adapt1 ref1 fires'
@@ -89,15 +93,42 @@ specIsiTol isi
   | otherwise = max 8.0 (0.14 * isi)
 
 -- | Soft polish toward specimen ISI/adapt (Zig polishToSpecimen twin).
+-- Seeds refractory from specimen ISI (mapSpecimen-style bridge) then iterates.
 polishToSpecimen :: UnitParams -> Specimen -> Int -> UnitParams
-polishToSpecimen p0 sp steps = go 0 p0
+polishToSpecimen p0 sp steps = go 0 pSeed
   where
     isiTol = specIsiTol (spIsiMs sp)
-    fast = spIsiMs sp < 35.0
+    isi = max 8.0 (min 220.0 (spIsiMs sp))
+    ad = max (-0.15) (min 0.6 (spAdapt sp))
+    fast = isi < 35.0
     stimHi = if fast then 1.40 else 0.95
     refLo = if fast then 3 else 4
+    refScale = if fast then 0.52 else 0.72
+    ref0 = max refLo (min 160 (round (isi * refScale) :: Int))
+    fi0 =
+      if fast
+        then max 0.55 (min 1.20 (upFiStim p0 * 1.15))
+        else max 0.35 (min 0.95 (upFiStim p0))
+    g0 =
+      if fast
+        then max 0.008 (min 0.04 (upAdaptGain p0 * 0.55))
+        else max 0.010 (min 0.14 (0.018 + 0.85 * max 0.0 ad))
+    d0 =
+      let a = max 0.0 (min 0.55 ad)
+          r = fromIntegral ref0
+          base = if a < 1e-6 then 0.03 else (2.0 * a * r) / (9.0 * (1.0 - a) + 1e-9)
+          scaled = base * if fast then 1.15 else (2.05 + 2.2 * max 0.0 (ad - 0.03))
+       in max 0.03 (min 14.0 scaled)
+    pSeed =
+      p0
+        { upRefSteps = ref0
+        , upFiStim = fi0
+        , upAdaptGain = g0
+        , upAdaptStep = d0
+        , upAdaptDecay = 0.988
+        }
     go it p
-      | it >= 52 = p
+      | it >= 72 = p
       | otherwise =
           let pr = runFIUnit p steps
            in if fiSpikes pr < 6
@@ -121,12 +152,12 @@ polishToSpecimen p0 sp steps = go 0 p0
                                       then
                                         p
                                           { upRefSteps = max refLo (upRefSteps p - 1)
-                                          , upFiStim = min stimHi (upFiStim p * (if fast then 1.04 else 1.02))
+                                          , upFiStim = min stimHi (upFiStim p * (if fast then 1.05 else 1.03))
                                           }
                                       else
                                         p
                                           { upRefSteps = min 180 (upRefSteps p + 1)
-                                          , upFiStim = max 0.28 (upFiStim p * 0.98)
+                                          , upFiStim = max 0.28 (upFiStim p * 0.97)
                                           }
                                   else p
                               p2 =

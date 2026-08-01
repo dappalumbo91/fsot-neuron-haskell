@@ -1,0 +1,12 @@
+﻿=== FSOT ALLEN ISI DISTRIBUTION KS (PRODUCT - HASKELL) ===
+=== FSOT ALLEN ISI DISTRIBUTION KS (PRODUCT CLAIM - HASKELL) ===
+doctrine: genetic class ORF + mutateOrf seed + soft specimen polish; KS + quantiles in ms
+ISI_KS n_sim=256 n_allen=256 genetic=True polish=True targets=True sample=True
+ISI_KS sim mean=7.428205e1 sd=5.053594e1 cv=6.803250e-1 p25=4.000000e1 p50=6.383333e1 p75=1.030000e2
+ISI_KS vs_csv |dmean|=7.098279e-1 ms sd_rel=1.184782e-1 |dp25|=3.617143e0 |dp50|=4.296667e-1 |dp75|=1.007600e1 ms
+ISI_KS D=7.421875e-2 D_crit05=1.200314e-1 D_cap=2.200000e-1 ks_ok=True mean_ok=True sd_ok=True quant_ok=True
+FSOT_ALLEN_ISI_KS_PRODUCT PASS
+FSOT_ALLEN_ISI_DISTRIBUTION_OK
+FSOT_KS_VS_ALLEN_CSV_OK
+FSOT_GENETIC_ISI_KS_OK
+FSOT_HASKELL_ISI_KS_OK

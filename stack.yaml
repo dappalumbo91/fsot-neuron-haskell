@@ -1,0 +1,12 @@
+# Stack resolver — picks a known-good GHC for Windows.
+# cabal.project remains the primary Cabal path; Stack is an alternate installer.
+resolver: lts-22.43
+
+packages:
+  - .
+
+# Extra-deps if needed later
+extra-deps: []
+
+# Allow newer if LTS GHC is slightly different from cabal.project
+allow-newer: false

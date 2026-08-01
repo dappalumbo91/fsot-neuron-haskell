@@ -2,7 +2,7 @@
 -- Values match archive pin path; not free-fit per experiment.
 module Fsot.Seeds
   ( phi
-  , pi
+  , seedPi
   , gamma
   , etaEff
   , psiCon
@@ -15,8 +15,9 @@ module Fsot.Seeds
 phi :: Double
 phi = 1.618033988749895
 
-pi :: Double
-pi = 3.141592653589793
+-- | π (named seedPi so it does not clash with Prelude.pi)
+seedPi :: Double
+seedPi = 3.141592653589793
 
 gamma :: Double
 gamma = 0.5772156649015329

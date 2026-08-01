@@ -1,0 +1,7 @@
+﻿=== FSOT MIND HOST (Haskell) ===
+doctrine: fixed lattice + 64-codon genetics; Allen readout; twin of Zig
+FSOT_CODON PASS 64_primary AG=+1 CT=-1 ATG=[+1,-1,+1]
+FSOT_GENOTYPE PASS codon_spine
+FSOT_ISI_KS_SELFTEST PASS
+FSOT_MIND_HOST_OK
+FSOT_HASKELL_AUTHORITY_OK

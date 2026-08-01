@@ -1,4 +1,4 @@
--- | Mind host modes (Haskell twin of Zig main_mind subset).
+﻿-- | Mind host modes (Haskell twin of Zig main_mind subset).
 module Fsot.Mind
   ( runMode
   , usage
@@ -21,7 +21,7 @@ usage =
     [ "usage: fsot-mind <mode>"
     , "  selftest   = codon + genotype + isi-ks self tests"
     , "  codon      = 64-codon primary map gate"
-    , "  genetic    = class ORF → phenotype → FI knobs smoke"
+    , "  genetic    = class ORF -> phenotype -> FI knobs smoke"
     , "  isi-ks     = full ISI distribution KS product (Allen CSV)"
     , "  scalpel    = class rate smoke (Pyr/PV/SST/VIP order)"
     , "  help       = this text"
@@ -73,7 +73,7 @@ runCodon = do
 
 runGenetic :: IO ()
 runGenetic = do
-  putStrLn "=== FSOT GENETIC (class ORF → FI) ==="
+  putStrLn "=== FSOT GENETIC (class ORF -> FI) ==="
   unless Gen.selfTest $ failGate "FSOT_GENOTYPE FAIL"
   mapM_ showClass [Pyr, Pv, Sst, Vip]
   putStrLn "FSOT_GENETIC PASS"
@@ -93,8 +93,8 @@ runGenetic = do
 
 runScalpel :: IO ()
 runScalpel = do
-  putStrLn "=== FSOT SCALPEL RATES (smoke · Haskell) ==="
-  putStrLn "doctrine: PV ≫ Pyr class order from genetic FI (full abs-Hz iron is Zig primary)"
+  putStrLn "=== FSOT SCALPEL RATES (smoke - Haskell) ==="
+  putStrLn "doctrine: PV >> Pyr class order from genetic FI (full abs-Hz iron is Zig primary)"
   let pyr = runFIUnit (paramsFromCellType Pyr 0 False) 1000
       pv = runFIUnit (paramsFromCellType Pv 0 False) 1000
       sst = runFIUnit (paramsFromCellType Sst 0 False) 1000
@@ -114,7 +114,7 @@ runScalpel = do
 
 runIsiKs :: IO ()
 runIsiKs = do
-  putStrLn "=== FSOT ALLEN ISI DISTRIBUTION KS (PRODUCT · HASKELL) ==="
+  putStrLn "=== FSOT ALLEN ISI DISTRIBUTION KS (PRODUCT - HASKELL) ==="
   unless Isi.selfTest $ failGate "FSOT_ALLEN_ISI_KS_PRODUCT SELFTEST FAIL"
   cwd <- getCurrentDirectory
   let targets = cwd </> "data" </> "allen" </> "allen_dist_targets.txt"

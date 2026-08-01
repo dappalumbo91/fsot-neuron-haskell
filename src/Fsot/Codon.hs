@@ -21,7 +21,7 @@ module Fsot.Codon
   ) where
 
 import Data.Char (toUpper)
-import Fsot.Seeds (gamma, phi, pi)
+import Fsot.Seeds (gamma, phi, seedPi)
 import Fsot.Trit (Trit, basePrimary, codonPrimary)
 
 data Residue = Residue
@@ -173,7 +173,7 @@ geneExpression rs =
       n = fromIntegral (length rs)
       q = fromIntegral (abs (chargeBalance rs))
       arom = aromaticFraction rs
-      raw = (phi ** spin) * exp (q / (pi * n)) * (1.0 + gamma * arom)
+      raw = (phi ** spin) * exp (q / (seedPi * n)) * (1.0 + gamma * arom)
    in max 0.05 (min 3.0 raw)
 
 selfTest :: Bool

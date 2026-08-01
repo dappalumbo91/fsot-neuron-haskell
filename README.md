@@ -32,25 +32,30 @@ FSOT NEURON haskell/
   docs/CLAIMS_AND_NONCLAIMS.md
 ```
 
-## Prerequisites
+## Prerequisites (installed on this lab host)
 
-Install a Haskell toolchain (not present on the lab host when this tree was created):
+| Tool | Version | Location |
+|------|---------|----------|
+| **GHCup** | 0.2.6+ | `C:\ghcup\bin` |
+| **GHC** | 9.10.3 | `C:\ghcup\ghc\9.10.3` |
+| **Cabal** | 3.16.1.0 | via GHCup |
+| **Stack** | 3.11.1 | optional alternate |
+
+New shell: ensure `C:\ghcup\bin` is on PATH (GHCup installer usually adds it for new sessions).
 
 ```powershell
-# Option A: GHCup (recommended)
-# https://www.haskell.org/ghcup/
-ghcup install ghc
-ghcup install cabal
-ghcup set ghc
+$env:Path = "C:\ghcup\bin;" + $env:Path
+ghc --version   # The Glorious Glasgow Haskell Compilation System, version 9.10.3
+cabal --version
 ```
-
-Or use [Chocolatey](https://community.chocolatey.org/packages/ghc) / Stack if you prefer.
 
 ## Build & run
 
 ```powershell
 cd "$env:USERPROFILE\Desktop\FSOT NEURON haskell"
+# or: git clone https://github.com/dappalumbo91/fsot-neuron-haskell.git
 
+$env:Path = "C:\ghcup\bin;" + $env:Path
 cabal update
 cabal build
 cabal run fsot-mind -- selftest
@@ -70,9 +75,7 @@ cabal test
 | `scalpel` | PV ≫ Pyr rate order smoke |
 | `isi-ks` | **Full ISI distribution KS product** (genetic seed + soft polish) |
 
-## Product claim (target)
-
-After `isi-ks` is green:
+## Product claim (measured 2026-08-01)
 
 ```text
 FSOT_ALLEN_ISI_KS_PRODUCT PASS
@@ -82,18 +85,23 @@ FSOT_GENETIC_ISI_KS_OK
 FSOT_HASKELL_ISI_KS_OK
 ```
 
-Cross-check against Zig:
+Measured: n=256, D≈0.074, |Δmean|≈0.71 ms, quantiles closed (host Double twin of Zig Fixed).
+
+Cross-check against Zig authority:
 
 ```powershell
 cd I:\fsot-neuron-zig
 .\zig-out\bin\fsot_mind.exe isi-ks
 ```
 
+**GitHub:** https://github.com/dappalumbo91/fsot-neuron-haskell  
+**Zig twin:** https://github.com/dappalumbo91/fsot-neuron-zig
+
 ## Port status
 
 See [`docs/PORT_FROM_ZIG.md`](docs/PORT_FROM_ZIG.md).  
-v0.1 = genetics spine + FI + ISI KS product scaffold.  
-Next: Fixed lattice FI step, every-cell Allen, intel-loop / think, compose.
+v0.1 = genetics spine + FI + **ISI KS product green**.  
+Next: Fixed lattice FI step, every-cell Allen iron, intel-loop / think, compose.
 
 ## License
 

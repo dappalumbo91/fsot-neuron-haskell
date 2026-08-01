@@ -52,14 +52,14 @@ fromDecimalStr s0 =
         _ -> (False, s0)
       (intPart, fracRest) = break (== '.') s
       intN = readDigits intPart
-      (fracDigits, places) =
+      fracDigits =
         case fracRest of
           ('.' : fs) ->
             let digs = take 12 (filter isDigit fs)
                 n = length digs
                 padded = digs ++ replicate (12 - n) '0'
-             in (readDigits padded, 12)
-          _ -> (0, 0)
+             in readDigits padded
+          _ -> 0
       v = intN * scale + fracDigits
    in if negS then -v else v
   where
