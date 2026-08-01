@@ -1,6 +1,6 @@
-# FSOT NEURON Haskell
+﻿# FSOT NEURON Haskell
 
-**Fluid Spacetime Omni-Theory (FSOT) neural mind — Haskell host twin of the Zig domain engine.**
+**Fluid Spacetime Omni-Theory (FSOT) neural mind â€” Haskell host twin of the Zig domain engine.**
 
 Not a second theory. Same law, same genetics-as-code, same Phase A product function, measured to the **same accuracy gates** as Zig and Idris.
 
@@ -15,14 +15,14 @@ Not a second theory. Same law, same genetics-as-code, same Phase A product funct
 | **Host twin + type structure** | Idris 2 | [fsot-neuron-idris](https://github.com/dappalumbo91/fsot-neuron-idris) |
 
 ```text
-         FSOT pin D1D38A  ·  DNA/codon → trinary → FI  ·  Allen ms/Hz
+         FSOT pin D1D38A  Â·  DNA/codon â†’ trinary â†’ FI  Â·  Allen ms/Hz
                               |
               +---------------+---------------+
               |               |               |
            [Zig]          [Haskell]        [Idris]
          Fixed+QEMU     this repo        Phase A+types
               |               |               |
-              +--- same function · same accuracy ---+
+              +--- same function Â· same accuracy ---+
 ```
 
 **Full linking system (read this first):**  
@@ -34,8 +34,8 @@ Not a second theory. Same law, same genetics-as-code, same Phase A product funct
 **Full-capability doctrine:**  
 [`docs/FULL_CAPABILITY_PARITY.md`](docs/FULL_CAPABILITY_PARITY.md)
 
-**Cross-language × Lean 4 scientific certificate (formula + empirical):**  
-[`docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md`](docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md) · stamp [`data/results/LEAN4_STAMP.txt`](data/results/LEAN4_STAMP.txt)
+**Cross-language Ã— Lean 4 scientific certificate (formula + empirical):**  
+[`docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md`](docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md) Â· stamp [`data/results/LEAN4_STAMP.txt`](data/results/LEAN4_STAMP.txt)
 
 ```text
 LEAN4_STAMP:scientific_panel_ok:v4.31.0:0_sorry:mind_stack
@@ -63,7 +63,7 @@ FSOT_ORGANISM PASS
 FSOT_COMPOSE_INTEL PASS          claim_rate=1.0
 FSOT_INTEL_LOOP PASS             claim_pre=post=1.0
 FSOT_INTERNAL_THINK PASS         continuous organism
-FSOT_ALLEN_ISI_KS_PRODUCT PASS   D≈0.074 |Δmean|≈0.71 ms
+FSOT_ALLEN_ISI_KS_PRODUCT PASS   Dâ‰ˆ0.074 |Î”mean|â‰ˆ0.71 ms
 FSOT_PHASE_A PASS
 FSOT_TWIN_PHASE_A_OK
 ```
@@ -103,10 +103,10 @@ cabal run fsot-mind -- parity
 |------|----------------|
 | `phase-a` | Organism + compose + intel-loop + think + isi-ks |
 | `think` / `think-min N` | Continuous organism think (not a full hour unless asked) |
-| `intel-loop` | Train → sleep → prove |
+| `intel-loop` | Train â†’ sleep â†’ prove |
 | `compose` | Answer-dependent multi-hop |
 | `isi-ks` | Full ISI distribution KS vs Allen CSV |
-| `genetic` / `scalpel` | DNA/class ORF FI · PV≫Pyr |
+| `genetic` / `scalpel` | DNA/class ORF FI Â· PVâ‰«Pyr |
 | `organism` | Continuous tick + episodic memory |
 
 ## Layout
@@ -114,9 +114,9 @@ cabal run fsot-mind -- parity
 ```text
 src/Fsot/   Fixed, Trit, Codon, Genotype, BioProbe, AllenIsiKs,
             Neuron, Memory, Organism, IntelLoop, ComposeIntel,
-            InternalThink, PhaseA, Mind, …
+            InternalThink, PhaseA, Mind, â€¦
 data/allen/ Allen targets + samples (shared authority with Zig)
-docs/       LANGUAGE_TWINS_NETWORK · PHASE_A_PARITY · FULL_CAPABILITY_PARITY
+docs/       LANGUAGE_TWINS_NETWORK Â· PHASE_A_PARITY Â· FULL_CAPABILITY_PARITY
 ```
 
 ## Related FSOT GitHub
@@ -128,4 +128,6 @@ docs/       LANGUAGE_TWINS_NETWORK · PHASE_A_PARITY · FULL_CAPABILITY_PARITY
 
 ## License
 
-Apache-2.0
+**Apache License, Version 2.0**
+
+See [`LICENSE`](LICENSE) (full terms) and [`NOTICE`](NOTICE).
