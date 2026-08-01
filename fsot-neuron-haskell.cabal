@@ -126,6 +126,7 @@ library
       Fsot.PhaseA
       Fsot.PhaseB
       Fsot.PhaseC
+      Fsot.PhaseD
       Fsot.BioLearn
       Fsot.BioEmbodied
       Fsot.PixelIdFixed

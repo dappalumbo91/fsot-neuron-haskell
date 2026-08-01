@@ -24,6 +24,7 @@ import qualified Fsot.BioEmbodied as Emb
 import qualified Fsot.PhaseA as PhaseA
 import qualified Fsot.PhaseB as PhaseB
 import qualified Fsot.PhaseC as PhaseC
+import qualified Fsot.PhaseD as PhaseD
 import System.Directory (doesFileExist, getCurrentDirectory)
 import System.Environment (getArgs)
 import System.Exit (ExitCode (..), exitFailure, exitWith)
@@ -39,6 +40,7 @@ usage =
     , "  phase-a       = organism + compose + intel-loop + think + isi-ks"
     , "  phase-b       = bio-learn experience intelligence + stress residual"
     , "  phase-c       = embodied I/O (bio-io + articulate + converse)"
+    , "  phase-d       = scientific packaging (Lean stamp + matrix)"
     , "  bio-learn     = animal/human learning suite (NOT LLM)"
     , "  think         = continuous organism think probe"
     , "  think-min N   = think for N wall-clock minutes"
@@ -71,6 +73,11 @@ runMode mode = case mode of
   "phasec" -> PhaseC.runPhaseC
   "embodied" -> PhaseC.runPhaseC
   "embodied-io" -> PhaseC.runPhaseC
+  "phase-d" -> PhaseD.runPhaseD
+  "phase_d" -> PhaseD.runPhaseD
+  "phased" -> PhaseD.runPhaseD
+  "scientific" -> PhaseD.runPhaseD
+  "scientific-packaging" -> PhaseD.runPhaseD
   "bio-learn" -> do
     let r = Bio.runBioLearn
     Bio.printReport r
