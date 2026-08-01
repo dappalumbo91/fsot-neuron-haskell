@@ -34,6 +34,13 @@ Not a second theory. Same law, same genetics-as-code, same Phase A product funct
 **Full-capability doctrine:**  
 [`docs/FULL_CAPABILITY_PARITY.md`](docs/FULL_CAPABILITY_PARITY.md)
 
+**Cross-language × Lean 4 scientific certificate (formula + empirical):**  
+[`docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md`](docs/CROSS_LANG_LEAN_SCIENTIFIC_CERTIFICATE.md) · stamp [`data/results/LEAN4_STAMP.txt`](data/results/LEAN4_STAMP.txt)
+
+```text
+LEAN4_STAMP:scientific_panel_ok:v4.31.0:0_sorry:mind_stack
+```
+
 ### Cross-language boot (same gates)
 
 | Gate | Zig | This repo (Haskell) | Idris |
