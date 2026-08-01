@@ -1,4 +1,4 @@
--- | Mind host — full mode surface twin of Zig main_mind.
+-- | Mind host - full mode surface twin of Zig main_mind.
 -- Doctrine: every Zig mode is registered; implemented modes run real gates;
 -- others report PORT_IN_PROGRESS with Zig source path (never silent no-op).
 module Fsot.Mind
@@ -19,7 +19,9 @@ import qualified Fsot.Memory as Mem
 import qualified Fsot.Neuron as Neu
 import qualified Fsot.Organism as Org
 import qualified Fsot.Parity as Parity
+import qualified Fsot.BioLearn as Bio
 import qualified Fsot.PhaseA as PhaseA
+import qualified Fsot.PhaseB as PhaseB
 import System.Directory (doesFileExist, getCurrentDirectory)
 import System.Environment (getArgs)
 import System.Exit (ExitCode (..), exitFailure, exitWith)
@@ -31,8 +33,10 @@ usage :: String
 usage =
   unlines
     [ "usage: fsot-mind <mode> [args]"
-    , "FULL CAPABILITY twin of Zig fsot_mind — Phase A included."
+    , "FULL CAPABILITY twin of Zig fsot_mind - Phase A included."
     , "  phase-a       = organism + compose + intel-loop + think + isi-ks"
+    , "  phase-b       = bio-learn experience intelligence + stress residual"
+    , "  bio-learn     = animal/human learning suite (NOT LLM)"
     , "  think         = continuous organism think probe"
     , "  think-min N   = think for N wall-clock minutes"
     , "  think-hour    = think for 60 minutes"
@@ -55,6 +59,16 @@ runMode mode = case mode of
   "phase-a" -> PhaseA.runPhaseA
   "phase_a" -> PhaseA.runPhaseA
   "phasea" -> PhaseA.runPhaseA
+  "phase-b" -> PhaseB.runPhaseB
+  "phase_b" -> PhaseB.runPhaseB
+  "phaseb" -> PhaseB.runPhaseB
+  "experience-intelligence" -> PhaseB.runPhaseB
+  "bio-learn" -> do
+    let r = Bio.runBioLearn
+    Bio.printReport r
+    unless (Bio.blOk r) exitFailure
+  "bio_learn" -> runMode "bio-learn"
+  "animal-learn" -> runMode "bio-learn"
   "codon" -> runCodon
   "genetic" -> runGenetic
   "genetic-var" -> runGenetic

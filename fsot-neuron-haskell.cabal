@@ -124,6 +124,8 @@ library
       Fsot.Pathways
       Fsot.PathwaysFixed
       Fsot.PhaseA
+      Fsot.PhaseB
+      Fsot.BioLearn
       Fsot.PixelIdFixed
       Fsot.QueryToolFixed
       Fsot.ReasonPracticeFixed
