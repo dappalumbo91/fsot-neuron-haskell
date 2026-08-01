@@ -1,0 +1,64 @@
+cabal-version:      3.0
+name:               fsot-neuron-haskell
+version:            0.1.0.0
+synopsis:           FSOT neural mind — Haskell twin of fsot-neuron-zig
+description:
+  Fluid Spacetime Omni-Theory (FSOT) neural mind domain engine in Haskell.
+  Same law pin D1D38A, fixed lattice SCALE=1e12, 64-codon genetics, Allen
+  ephys product gates. Port of the Zig authority (fsot-neuron-zig).
+license:            Apache-2.0
+license-file:       LICENSE
+author:             FSOT
+maintainer:         local
+category:           Science
+build-type:         Simple
+extra-source-files:
+  README.md
+  data/64_codon_trinary_map.txt
+  data/allen/allen_dist_targets.txt
+  data/allen/allen_sample_256.txt
+  data/allen/allen_sample_128.txt
+  docs/PORT_FROM_ZIG.md
+  docs/CLAIMS_AND_NONCLAIMS.md
+
+common shared
+  default-language: Haskell2010
+  ghc-options:      -Wall -Wcompat -Wno-unused-imports
+  build-depends:
+      base >= 4.14 && < 5
+    , containers
+    , text
+    , bytestring
+    , directory
+    , filepath
+
+library
+  import:           shared
+  hs-source-dirs:   src
+  exposed-modules:
+      Fsot.Fixed
+      Fsot.Trit
+      Fsot.Codon
+      Fsot.Seeds
+      Fsot.CellTypes
+      Fsot.Genotype
+      Fsot.BioProbe
+      Fsot.AllenIsiKs
+      Fsot.Mind
+
+executable fsot-mind
+  import:           shared
+  main-is:          Main.hs
+  hs-source-dirs:   app
+  build-depends:
+      fsot-neuron-haskell
+  ghc-options:      -threaded -rtsopts -with-rtsopts=-N
+
+test-suite fsot-neuron-haskell-test
+  import:           shared
+  type:             exitcode-stdio-1.0
+  main-is:          Spec.hs
+  hs-source-dirs:   test
+  build-depends:
+      fsot-neuron-haskell
+  ghc-options:      -threaded

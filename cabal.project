@@ -1,0 +1,4 @@
+packages: .
+
+-- Prefer a modern GHC when available (9.x). Cabal will use whatever is on PATH.
+with-compiler: ghc
