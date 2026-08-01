@@ -1,0 +1,10 @@
+THINK_BOOT seeds=20 lit=8
+THINK_HB cy=1 retr=20/20 disc=0 grown=0 idea=dog is animal so water is liquid
+THINK_HB cy=2 retr=20/20 disc=1 grown=1 idea=water is liquid so people need is water
+THINK_HB cy=3 retr=20/20 disc=1 grown=2 idea=sun is star so neuron is cell
+THINK_HB cy=4 retr=20/20 disc=0 grown=2 idea=plants need is sun so gravity is force
+THINK_HB cy=5 retr=20/20 disc=0 grown=2 idea=people need is water so one and one is t
+THINK_HB cy=6 retr=20/20 disc=1 grown=3 idea=sun when is day so moon when is night
+THINK_HB cy=7 retr=20/20 disc=1 grown=4 idea=sky color is blue so days in week is sev
+THINK_HB cy=8 retr=20/20 disc=0 grown=4 idea=neuron is cell so sun is star
+THINK_DONE cy=8 ms=129

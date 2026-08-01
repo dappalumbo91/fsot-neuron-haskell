@@ -14,31 +14,30 @@ import qualified Fsot.Codon as Codon
 import qualified Fsot.ComposeIntel as Compose
 import qualified Fsot.Genotype as Gen
 import qualified Fsot.IntelLoop as Loop
+import qualified Fsot.InternalThink as Think
 import qualified Fsot.Memory as Mem
 import qualified Fsot.Neuron as Neu
 import qualified Fsot.Organism as Org
 import qualified Fsot.Parity as Parity
+import qualified Fsot.PhaseA as PhaseA
 import System.Directory (doesFileExist, getCurrentDirectory)
+import System.Environment (getArgs)
 import System.Exit (ExitCode (..), exitFailure, exitWith)
 import System.FilePath ((</>))
 import Text.Printf (printf)
+import Text.Read (readMaybe)
 
 usage :: String
 usage =
   unlines
-    [ "usage: fsot-mind <mode>"
-    , "FULL CAPABILITY twin of Zig fsot_mind — not a demo."
-    , "  parity        = coverage report vs Zig modes/modules"
-    , "  selftest      = core stack self tests"
-    , "  suite|stress  = implemented gates battery"
-    , "  isi-ks        = Allen ISI distribution KS product"
-    , "  intel-loop    = train->sleep->prove"
-    , "  compose       = answer-dependent hops"
-    , "  organism      = continuous organism tick + memory"
-    , "  genetic|scalpel|fixed|..."
-    , "  help          = this text"
-    , ""
-    , "Unimplemented modes: FSOT_PORT_IN_PROGRESS (exit 2)."
+    [ "usage: fsot-mind <mode> [args]"
+    , "FULL CAPABILITY twin of Zig fsot_mind — Phase A included."
+    , "  phase-a       = organism + compose + intel-loop + think + isi-ks"
+    , "  think         = continuous organism think probe"
+    , "  think-min N   = think for N wall-clock minutes"
+    , "  think-hour    = think for 60 minutes"
+    , "  organism|intel-loop|compose|isi-ks|suite|stress|genetic|..."
+    , "  parity|selftest|fixed|help"
     , "See docs/FULL_CAPABILITY_PARITY.md"
     ]
 
@@ -53,6 +52,9 @@ runMode mode = case mode of
   "all" -> runSuite
   "tests" -> runSuite
   "stress" -> runStress
+  "phase-a" -> PhaseA.runPhaseA
+  "phase_a" -> PhaseA.runPhaseA
+  "phasea" -> PhaseA.runPhaseA
   "codon" -> runCodon
   "genetic" -> runGenetic
   "genetic-var" -> runGenetic
@@ -74,6 +76,13 @@ runMode mode = case mode of
   "compose" -> runCompose
   "compose-intel" -> runCompose
   "answer-hop" -> runCompose
+  "think" -> runThink
+  "internal-think" -> runThink
+  "think-hour" -> runThinkHour
+  "think_hour" -> runThinkHour
+  "hour-think" -> runThinkHour
+  "think-min" -> runThinkMin
+  "think_min" -> runThinkMin
   "fixed" -> runFixed
   "fixedpoint" -> runFixed
   "authority" -> runFixed
@@ -113,23 +122,27 @@ runSelfTest = do
   putStrLn "FSOT_INTEL_LOOP_SELFTEST PASS"
   unless Compose.selfTest $ failGate "FSOT_COMPOSE SELFTEST FAIL"
   putStrLn "FSOT_COMPOSE_SELFTEST PASS"
+  unless Think.selfTest $ failGate "FSOT_THINK SELFTEST FAIL"
+  putStrLn "FSOT_THINK_SELFTEST PASS"
   putStrLn "FSOT_MIND_HOST_OK"
   putStrLn "FSOT_HASKELL_AUTHORITY_OK"
   putStrLn "FSOT_FULL_CAPABILITY_CORE_OK"
 
 runSuite :: IO ()
 runSuite = do
-  putStrLn "=== FSOT SUITE (implemented twin gates) ==="
+  putStrLn "=== FSOT SUITE (Phase A twin gates) ==="
   runSelfTest
   runScalpel
+  runOrganism
   runIntelLoop
   runCompose
-  putStrLn "FSOT_SUITE PASS (isi-ks optional long gate: fsot-mind isi-ks)"
+  runThink
+  putStrLn "FSOT_SUITE PASS (full phase-a + isi-ks: fsot-mind phase-a)"
 
 runStress :: IO ()
 runStress = do
-  putStrLn "=== FSOT STRESS (core + product) ==="
-  runSuite
+  putStrLn "=== FSOT STRESS (Phase A product) ==="
+  PhaseA.runPhaseA
   putStrLn "FSOT_STRESS PASS"
 
 runCodon :: IO ()
@@ -228,3 +241,27 @@ runFixed = do
   runScalpel
   putStrLn "FSOT_FIXED_STACK_OK"
   putStrLn "NOTE: Zig Fixed SCALE=1e12 remains bit-authority; Haskell is host Double twin"
+
+runThink :: IO ()
+runThink = do
+  r <- Think.runThinkProbe
+  Think.printReport r
+  unless (Think.trOk r) exitFailure
+
+runThinkHour :: IO ()
+runThinkHour = do
+  putStrLn "=== FSOT THINK-HOUR (60 wall-clock minutes) ==="
+  r <- Think.runThinkMinutes 60
+  Think.printReport r
+  unless (Think.trOk r) exitFailure
+
+runThinkMin :: IO ()
+runThinkMin = do
+  args <- getArgs
+  let mins = case args of
+        (_ : _ : n : _) -> maybe 1 id (readMaybe n)
+        _ -> 1
+  putStrLn $ "=== FSOT THINK-MIN " ++ show mins ++ " ==="
+  r <- Think.runThinkMinutes mins
+  Think.printReport r
+  unless (Think.trOk r) exitFailure

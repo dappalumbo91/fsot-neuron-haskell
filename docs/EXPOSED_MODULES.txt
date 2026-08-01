@@ -1,4 +1,4 @@
-Fsot.AllatomMd
+﻿Fsot.AllatomMd
 Fsot.AllenBaremetalFixed
 Fsot.AllenClassDistFixed
 Fsot.AllenDistFixed
@@ -58,6 +58,7 @@ Fsot.InjectIoFixed
 Fsot.IntelFrontierFixed
 Fsot.IntelLoop
 Fsot.IntelLoopFixed
+Fsot.InternalThink
 Fsot.InternalThinkFixed
 Fsot.KnowQueryFixed
 Fsot.LanguageDepthFixed
@@ -89,6 +90,7 @@ Fsot.OrganismFixed
 Fsot.Parity
 Fsot.Pathways
 Fsot.PathwaysFixed
+Fsot.PhaseA
 Fsot.PixelIdFixed
 Fsot.QueryToolFixed
 Fsot.ReasonPracticeFixed

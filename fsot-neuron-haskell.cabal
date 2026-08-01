@@ -1,9 +1,8 @@
 cabal-version:      3.0
 name:               fsot-neuron-haskell
-version:            0.2.0.0
-synopsis:           FSOT neural mind - full-capability Haskell twin of fsot-neuron-zig
-description:
-  Full capable copy of the Zig domain engine: every module mirror, every CLI mode.
+version:            0.3.0.0
+synopsis:           FSOT neural mind - full Phase A twin of fsot-neuron-zig
+description:        Unequivocable Phase A + continuous organism twin.
 license:            Apache-2.0
 license-file:       LICENSE
 author:             FSOT
@@ -92,6 +91,7 @@ library
       Fsot.IntelFrontierFixed
       Fsot.IntelLoop
       Fsot.IntelLoopFixed
+      Fsot.InternalThink
       Fsot.InternalThinkFixed
       Fsot.KnowQueryFixed
       Fsot.LanguageDepthFixed
@@ -123,6 +123,7 @@ library
       Fsot.Parity
       Fsot.Pathways
       Fsot.PathwaysFixed
+      Fsot.PhaseA
       Fsot.PixelIdFixed
       Fsot.QueryToolFixed
       Fsot.ReasonPracticeFixed

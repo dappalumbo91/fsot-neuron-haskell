@@ -115,6 +115,10 @@ implementedModes =
   , "stress"
   , "suite"
   , "fixed"
+  , "think"
+  , "think-min"
+  , "think-hour"
+  , "phase-a"
   ]
 
 printParity :: IO ()
