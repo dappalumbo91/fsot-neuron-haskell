@@ -130,6 +130,7 @@ library
       Fsot.BioLearn
       Fsot.BioEmbodied
       Fsot.SelfTalk
+      Fsot.LiveMind
       Fsot.PixelIdFixed
       Fsot.QueryToolFixed
       Fsot.ReasonPracticeFixed

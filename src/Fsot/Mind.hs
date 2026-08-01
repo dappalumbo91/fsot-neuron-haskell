@@ -27,6 +27,7 @@ import qualified Fsot.PhaseC as PhaseC
 import qualified Fsot.PhaseD as PhaseD
 import qualified Fsot.GliaFixed as Glia
 import qualified Fsot.SelfTalk as SelfTalk
+import qualified Fsot.LiveMind as Live
 import System.Directory (doesFileExist, getCurrentDirectory)
 import System.Environment (getArgs)
 import System.Exit (ExitCode (..), exitFailure, exitWith)
@@ -110,6 +111,13 @@ runMode mode = case mode of
     unless (SelfTalk.stOk r) exitFailure
   "self_talk" -> runMode "self-talk"
   "internal-speech" -> runMode "self-talk"
+  "mind" -> Live.runLiveMind
+  "live" -> Live.runLiveMind
+  "live-mind" -> Live.runLiveMind
+  "live_mind" -> Live.runLiveMind
+  "connected" -> Live.runLiveMind
+  "awake" -> Live.runLiveMind
+  "mind-auto" -> Live.runLiveMindAuto 120
   "codon" -> runCodon
   "genetic" -> runGenetic
   "genetic-var" -> runGenetic
