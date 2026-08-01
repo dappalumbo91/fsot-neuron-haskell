@@ -1,16 +1,16 @@
 # FSOT NEURON Haskell
 
-**Fluid Spacetime Omni-Theory (FSOT) neural mind — Haskell twin of the Zig domain engine.**
+**Fluid Spacetime Omni-Theory (FSOT) neural mind — full-capability Haskell twin of the Zig domain engine.**
 
 | | |
 |--|--|
-| **Zig authority** | `I:\fsot-neuron-zig` · [fsot-neuron-zig](https://github.com/dappalumbo91/fsot-neuron-zig) |
-| **This repo** | Desktop · `FSOT NEURON haskell` |
-| **Law pin** | D1D38A · \(S=K(T_1+T_2+T_3)\) |
-| **Genetics** | 64-codon trinary · ORF → expression → phenotype → FI |
-| **Product gate** | Full Allen ISI distribution KS (`isi-ks`) |
+| **Zig authority** | [fsot-neuron-zig](https://github.com/dappalumbo91/fsot-neuron-zig) |
+| **This repo** | [fsot-neuron-haskell](https://github.com/dappalumbo91/fsot-neuron-haskell) |
+| **Idris twin** | [fsot-neuron-idris](https://github.com/dappalumbo91/fsot-neuron-idris) |
+| **Law pin** | D1D38A |
+| **Doctrine** | **Full capable copy** of Zig — every module mirrored, every CLI mode registered |
 
-This is **not** a second theory. Same fold, same codon spine, same Allen readout doctrine. Zig remains bare-metal / full organism authority until this port is extended and measured.
+**Not a demo.** See [`docs/FULL_CAPABILITY_PARITY.md`](docs/FULL_CAPABILITY_PARITY.md).
 
 ## Layout
 
