@@ -1,6 +1,6 @@
 # Port map — Zig → Haskell
 
-**Zig authority:** `I:\fsot-neuron-zig`  
+**Zig authority:** `fsot-neuron-zig`  
 **Haskell twin:** `Desktop\FSOT NEURON haskell`  
 **Date:** 2026-08-01
 
