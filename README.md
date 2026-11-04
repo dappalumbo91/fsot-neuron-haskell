@@ -1,5 +1,7 @@
 ﻿# FSOT NEURON Haskell
 
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 **Fluid Spacetime Omni-Theory (FSOT) neural mind â€” Haskell host twin of the Zig domain engine.**
 
 Not a second theory. Same law, same genetics-as-code, same Phase A product function, measured to the **same accuracy gates** as Zig and Idris.
